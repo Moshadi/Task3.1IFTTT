@@ -2,19 +2,19 @@
 #include <Wire.h>
 #include <BH1750.h>
 
-char ssid[] = "your_wifi_ssid";         // Replace with your Wi-Fi SSID
-char pass[] = "your_wifi_password";     // Replace with your Wi-Fi password
+char ssid[] = "iPhone";       
+char pass[] = "Moshi@2000";    
 
 char HOST_NAME[] = "maker.ifttt.com";
-String EVENT_START = "sunlight_detected";   // Replace with your IFTTT event name for sunlight detection
-String EVENT_STOP  = "sunlight_gone";      // Replace with your IFTTT event name for sunlight stop
-String IFTTT_KEY   = "plkNbtVb7nTfaPjNqYUWcat_wSTeyCuLZOLDFlzLRm";   // Replace with your IFTTT Webhook key
+String EVENT_START = "sunlight_detected";   
+String EVENT_STOP  = "sunlight_gone";      
+String IFTTT_KEY   = "plkNbtVb7nTfaPjNqYUWcb8YzhGzTcmsEejQ1Ito7sP";   
 
 WiFiClient client;
 BH1750 lightSensor;
 
 bool sunlightDetected = false;
-int threshold = 100;  // Set this according to your needs (default is 100 lux)
+int threshold = 300;  
 
 void setup() {
   Serial.begin(9600);
@@ -58,7 +58,7 @@ void loop() {
 
 void sendToIFTTT(String eventName, float lightLevel) {
   String path = "/trigger/" + eventName + "/with/key/" + IFTTT_KEY;
-  String query = "?value1=" + String(lightLevel, 2);  // Send light level data as value1
+  String query = "?value1=";
 
   // Make the GET request to IFTTT
   if (client.connect(HOST_NAME, 80)) {
